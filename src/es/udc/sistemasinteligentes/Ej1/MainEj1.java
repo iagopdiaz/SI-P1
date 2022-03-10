@@ -2,8 +2,7 @@ package es.udc.sistemasinteligentes.Ej1;
 
 import es.udc.sistemasinteligentes.EstrategiaBusqueda;
 import es.udc.sistemasinteligentes.ProblemaBusqueda;
-import es.udc.sistemasinteligentes.ejemplo.Estrategia4;
-import es.udc.sistemasinteligentes.ejemplo.ProblemaAspiradora;
+import java.util.Arrays;
 
 public class MainEj1 {
     public static void main(String[] args) throws Exception {
@@ -12,6 +11,13 @@ public class MainEj1 {
         ProblemaBusqueda aspiradora = new ProblemaAspiradora(estadoInicial);
 
         EstrategiaBusqueda buscador = new Estrategia4();
-        System.out.println(buscador.soluciona(aspiradora));
+
+        System.out.println("Estrategia 4:");
+
+        System.out.println("Estado Meta: "+ Arrays.toString(buscador.soluciona(aspiradora)));
+
+        System.out.println("Estrategia Busqueda Grafo :");
+        buscador = new EstrategiaBusquedaGrafo();
+        System.out.println("Estado Meta: "+ Arrays.toString(buscador.soluciona(aspiradora)));
     }
 }

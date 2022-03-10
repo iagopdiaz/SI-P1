@@ -1,8 +1,4 @@
-package es.udc.sistemasinteligentes.Ej1;
-
-import es.udc.sistemasinteligentes.*;
-
-import javax.print.attribute.standard.NumberOfDocuments;
+package es.udc.sistemasinteligentes;
 
 public class Nodo {
     private Estado estado;
@@ -37,5 +33,14 @@ public class Nodo {
 
     public void setAccion(Accion accion) {
         this.accion = accion;
+    }
+
+    @Override
+    public String toString() {
+        return "Nodo{" +
+                "estado=" + getEstado() +
+                ", padre=" + getPadre() +
+                ", accion=" + getAccion() +
+                '}';
     }
 }
