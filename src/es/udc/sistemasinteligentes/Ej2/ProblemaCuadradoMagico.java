@@ -9,36 +9,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ProblemaCuadradoMagico extends ProblemaBusqueda {
-    public ProblemaCuadradoMagico(ProblemaCuadradoMagico.EstadoCuadradoMagico estadoInicial) {
-        super(estadoInicial);
-    }
 
     public static class EstadoCuadradoMagico extends Estado {
 
         private int[][] Cuadrado;
-        private int[] NumerosUsados = {};
         private int ValorCuadrado;
 
 
         public EstadoCuadradoMagico(int [][] cuadrado) {
             int n = cuadrado.length;
-            int x = 0;
-
-            for(int i = 0; i < n; i++){
-                for (int j = 0; j < n; j++){
-                    if (cuadrado[i][j] != 0){
-                        this.NumerosUsados[x] = cuadrado[i][j];
-                        x++;
-                    }
-                }
-            }
 
             this.ValorCuadrado = n*(n^2-1)/2;
             this.Cuadrado = cuadrado;
-        }
-
-        public void setNumerosUsados(int[] numerosUsados) {
-            this.NumerosUsados = numerosUsados;
         }
 
         @Override
@@ -71,15 +53,15 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     }
 
     public static class AccionCuadradoMagico extends Accion {
-        private int PonerNumero;
+        private int[] NumerosDisponibles = {};
 
-        public AccionCuadradoMagico(int i) {
-            this.PonerNumero = i;
+        public AccionCuadradoMagico(int[] numerosDisponibles) {
+            this.NumerosDisponibles = numerosDisponibles;
         }
 
         @Override
         public String toString() {
-            return String.valueOf(PonerNumero);
+            return Arrays.toString(NumerosDisponibles);
         }
 
         @Override
@@ -93,29 +75,60 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
             int[][] nuevoCuadrado = esCu.Cuadrado;
             int i;
 
-            for (i = 0; i < esCu.NumerosUsados.length; i++){           //Comprobamos que el número a insertar no está usado.
-                if (PonerNumero == esCu.NumerosUsados[i])
-                    return new EstadoCuadradoMagico(nuevoCuadrado);
-            }
-
             for (i = 0;i < nuevoCuadrado.length; i++){                 //Recorremos el cuadrado hasta encontrar una posición vacía
                 for (int j = 0;j < nuevoCuadrado.length; j++){         //para insertar el numero dado.
-                   if(nuevoCuadrado[i][j] == 0){
-                       nuevoCuadrado[i][j] = PonerNumero;
-                       return new EstadoCuadradoMagico(nuevoCuadrado);
-                   }
+                    if(nuevoCuadrado[i][j] == 0){
+                        nuevoCuadrado[i][j] = NumerosDisponibles[0];
+                        return new EstadoCuadradoMagico(nuevoCuadrado);
+                    }
                 }
             }
-
             return new EstadoCuadradoMagico(nuevoCuadrado);
         }
     }
 
     private Accion[] listaAcciones;
 
+    public int[] CalularNumerosDisponibles(EstadoCuadradoMagico estado){
+        int[] numerosDisponibles = {0};
+        int[] numerosUsados = {0};
+        int x = 0,i,j;
+        int total = (int) Math.pow(estado.Cuadrado.length,2);
+
+        for (i = 0; i < estado.Cuadrado.length; i++) {            //Guardamos los numeros ya usados en el estadoInicial.
+            for (j = 0; j < estado.Cuadrado.length; j++) {
+                if (estado.Cuadrado[i][j] != 0){
+                    numerosUsados[x] = estado.Cuadrado[i][j];
+                    x++;
+                }
+            }
+        }
+
+        x = 0;
+        for (i = 0; i < total; i++) {                      //Llenamos el array con todos los números posibles en el cuadrado.
+            numerosDisponibles[x] = i + 1;
+            if (!Arrays.asList(numerosUsados).contains(numerosDisponibles[x]))
+                x++;
+        }
+        return numerosDisponibles;
+    }
+
+    public ProblemaCuadradoMagico(ProblemaCuadradoMagico.EstadoCuadradoMagico estadoInicial) {
+        super(estadoInicial);
+        int[] numerosDisponibles = {0};
+
+        numerosDisponibles = CalularNumerosDisponibles(estadoInicial);
+
+        listaAcciones = new Accion[]{new AccionCuadradoMagico(numerosDisponibles)};
+    }
+
     public Accion[] acciones(Estado es){
-        //No es necesario generar las acciones dinámicamente a partir del estado porque todas las acciones se pueden
-        //aplicar a todos los estados
+        EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
+        int[] numerosDisponibles = {0};
+
+        numerosDisponibles = CalularNumerosDisponibles(esCu);
+        listaAcciones = new Accion[]{new AccionCuadradoMagico(numerosDisponibles)};
+
         return listaAcciones;
     }
 
@@ -124,7 +137,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     public boolean esMeta(Estado es) {
         EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
         int numeroF, fila = 0, numeroC, columna = 0,
-            numeroD1, diagonal1 = 0, numeroD2, diagonal2 = 0, magico = esCu.ValorCuadrado;
+                numeroD1, diagonal1 = 0, numeroD2, diagonal2 = 0, magico = esCu.ValorCuadrado;
 
         for (int i = 0;i < esCu.Cuadrado.length; i++){
             for (int j = 0;j < esCu.Cuadrado.length; j++){
