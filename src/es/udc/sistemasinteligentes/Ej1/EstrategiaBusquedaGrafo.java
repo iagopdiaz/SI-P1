@@ -39,7 +39,7 @@ public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
         Nodo nodoActual = new Nodo(p.getEstadoInicial(), null, null);
         Estado estadoActual = nodoActual.getEstado();
         frontera.add(nodoActual);
-        ArrayList<Nodo> nodos_explorados = new ArrayList<>();
+        ArrayList<Nodo> nodosExplorados = new ArrayList<>();
         ArrayList<Nodo> hijos;
 
         int i = 1;
@@ -53,10 +53,10 @@ public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
 
             if (!p.esMeta(estadoActual)){
                 System.out.println((i++) + " - " + estadoActual + " no es meta");
-                nodos_explorados.add(nodoActual);
+                nodosExplorados.add(nodoActual);
                 hijos = hijos(p, nodoActual);
                 for (Nodo hijo: hijos) {
-                   if (frontera.stream().noneMatch(nodo -> nodo.getEstado().equals(hijo.getEstado())) && nodos_explorados.stream().noneMatch(nodo -> nodo.getEstado().equals(hijo.getEstado()))) {
+                   if (frontera.stream().noneMatch(nodo -> nodo.getEstado().equals(hijo.getEstado())) && nodosExplorados.stream().noneMatch(nodo -> nodo.getEstado().equals(hijo.getEstado()))) {
                         System.out.println((i++) + " - " + hijo.getEstado() + " NO explorado");
                         frontera.add(hijo);
                     }

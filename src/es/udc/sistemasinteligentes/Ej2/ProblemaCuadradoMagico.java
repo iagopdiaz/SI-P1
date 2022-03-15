@@ -89,52 +89,53 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
 
     private Accion[] listaAcciones;
 
-    public int[] CalcularNumerosDisponibles(EstadoCuadradoMagico estado){
-        int[] numerosDisponibles = {0};
-        int[] numerosUsados = {0};
-        int x = 0,i,j;
+    public ArrayList<Integer> CalcularNumerosDisponibles(EstadoCuadradoMagico estado){
+        ArrayList<Integer> numerosDisponibles = new ArrayList<>();
+        ArrayList<Integer> numerosUsados = new ArrayList<>();
+        int x,i,j;
         int total = (int) Math.pow(estado.Cuadrado.length,2);
 
         for (i = 0; i < estado.Cuadrado.length; i++) {            //Guardamos los numeros ya usados en el estadoInicial.
             for (j = 0; j < estado.Cuadrado.length; j++) {
                 if (estado.Cuadrado[i][j] != 0){
-                    numerosUsados[x] = estado.Cuadrado[i][j];
-                    x++;
+                    numerosUsados.add(estado.Cuadrado[i][j]);
                 }
             }
         }
 
-        x = 0;
         for (i = 0; i < total; i++) {                      //Llenamos el array con todos los números posibles en el cuadrado.
-            numerosDisponibles[x] = i + 1;
-            if (!Arrays.asList(numerosUsados).contains(numerosDisponibles[x]))
-                x++;
+            if (!numerosUsados.contains(i+1))
+                numerosDisponibles.add(i+1);
         }
+
         return numerosDisponibles;
     }
 
     public ProblemaCuadradoMagico(ProblemaCuadradoMagico.EstadoCuadradoMagico estadoInicial) {
         super(estadoInicial);
-        int[] numerosDisponibles;
+        ArrayList<Integer> numerosDisponibles;
         ArrayList<AccionCuadradoMagico> acciones = new ArrayList<>();
 
         numerosDisponibles = CalcularNumerosDisponibles(estadoInicial);
+        for (int i = 0; i < numerosDisponibles.size(); i++){
+            System.out.println(" - Numero que no esta " + numerosDisponibles.get(i));
+        }
 
-        for (int i = 0; i < numerosDisponibles.length; i++){
-            acciones.add(new AccionCuadradoMagico(numerosDisponibles[i]));
+        for (int i = 0; i < numerosDisponibles.size(); i++){
+            acciones.add(new AccionCuadradoMagico(numerosDisponibles.get(i)));
         }
         listaAcciones = acciones.toArray(new Accion[0]);
     }
 
     public Accion[] acciones(Estado es){
         EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
-        int[] numerosDisponibles;
+        ArrayList<Integer> numerosDisponibles;
         ArrayList<AccionCuadradoMagico> acciones = new ArrayList<>();
 
         numerosDisponibles = CalcularNumerosDisponibles(esCu);
 
-        for (int i = 0; i < numerosDisponibles.length; i++){
-            acciones.add(new AccionCuadradoMagico(numerosDisponibles[i]));
+        for (int i = 0; i < numerosDisponibles.size(); i++){
+            acciones.add(new AccionCuadradoMagico(numerosDisponibles.get(i)));
         }
         listaAcciones = acciones.toArray(new Accion[0]);
 
