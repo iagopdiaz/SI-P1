@@ -70,6 +70,6 @@ public class EstrategiaBusquedaGrafo implements EstrategiaBusqueda {
                 return sol.toArray(new Nodo[0]);
             }
         }
-        throw new Exception("No se ha podido encontrar una solución");
+        throw new Exception("No se ha podido encontrar una solución ");
     }
 }
