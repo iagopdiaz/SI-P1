@@ -13,7 +13,7 @@ public class MainEj2 {
 
         ProblemaCuadradoMagico cuadrado = new ProblemaCuadradoMagico(estadoInicial);
 
-        EstrategiaBusqueda buscador = new Estrategia4();
+        EstrategiaBusqueda buscador = new EstrategiaBusquedaAnchura();
 
         System.out.println("Estrategia Anchura:");
 

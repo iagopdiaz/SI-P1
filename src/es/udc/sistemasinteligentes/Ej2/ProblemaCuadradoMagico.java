@@ -117,13 +117,11 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         ArrayList<AccionCuadradoMagico> acciones = new ArrayList<>();
 
         numerosDisponibles = CalcularNumerosDisponibles(estadoInicial);
-        for (int i = 0; i < numerosDisponibles.size(); i++){
-            System.out.println(" - Numero que no esta " + numerosDisponibles.get(i));
-        }
 
         for (int i = 0; i < numerosDisponibles.size(); i++){
             acciones.add(new AccionCuadradoMagico(numerosDisponibles.get(i)));
         }
+
         listaAcciones = acciones.toArray(new Accion[0]);
     }
 
