@@ -115,13 +115,13 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         super(estadoInicial);
         ArrayList<Integer> numerosDisponibles;
         ArrayList<AccionCuadradoMagico> acciones = new ArrayList<>();
+        int x = 6;
 
         numerosDisponibles = CalcularNumerosDisponibles(estadoInicial);
 
         for (int i = 0; i < numerosDisponibles.size(); i++){
             acciones.add(new AccionCuadradoMagico(numerosDisponibles.get(i)));
         }
-
         listaAcciones = acciones.toArray(new Accion[0]);
     }
 
@@ -129,12 +129,14 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
         ArrayList<Integer> numerosDisponibles;
         ArrayList<AccionCuadradoMagico> acciones = new ArrayList<>();
+        int x=6;
 
         numerosDisponibles = CalcularNumerosDisponibles(esCu);
 
         for (int i = 0; i < numerosDisponibles.size(); i++){
             acciones.add(new AccionCuadradoMagico(numerosDisponibles.get(i)));
         }
+
         listaAcciones = acciones.toArray(new Accion[0]);
 
         return listaAcciones;
