@@ -13,13 +13,13 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     public static class EstadoCuadradoMagico extends Estado {
 
         private int[][] Cuadrado;
-        private int ValorCuadrado;
+        private double ValorCuadrado;
 
 
         public EstadoCuadradoMagico(int [][] cuadrado) {
             int n = cuadrado.length;
 
-            this.ValorCuadrado = n*(n^2-1)/2;
+            this.ValorCuadrado = n * (Math.pow(n,2) + 1) / 2;
             this.Cuadrado = cuadrado;
         }
 
@@ -47,8 +47,9 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
 
         @Override
         public int hashCode() {
-            int result = ValorCuadrado;
-            return (31 * result + 7);
+            double result = ValorCuadrado;
+
+            return (31 * (int)result + 7);
         }
     }
 
@@ -74,6 +75,12 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
             EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
             int[][] nuevoCuadrado = esCu.Cuadrado;
             int i;
+
+            for (i = 0;i < nuevoCuadrado.length; i++){
+                for (int j = 0;j < nuevoCuadrado.length; j++){
+                    nuevoCuadrado[i][j] = esCu.Cuadrado[i][j];
+                }
+            }
 
             for (i = 0;i < nuevoCuadrado.length; i++){                 //Recorremos el cuadrado hasta encontrar una posición vacía
                 for (int j = 0;j < nuevoCuadrado.length; j++){         //para insertar el numero dado.
@@ -146,14 +153,13 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     @Override
     public boolean esMeta(Estado es) {
         EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
-        int numeroF, fila = 0, numeroC, columna = 0,
+        double numeroF, fila = 0, numeroC, columna = 0,
                 numeroD1, diagonal1 = 0, numeroD2, diagonal2 = 0, magico = esCu.ValorCuadrado;
+
 
         for (int i = 0;i < esCu.Cuadrado.length; i++){
             fila = 0;
             columna = 0;
-            diagonal1 = 0;
-            diagonal2 = 0;
 
             for (int j = 0;j < esCu.Cuadrado.length; j++){
                 numeroF = esCu.Cuadrado[i][j];
@@ -172,8 +178,9 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
                     diagonal2 = numeroD2 + diagonal2;
                 }
             }
+            if (fila != magico || columna != magico)
+                return false;
         }
-
         return (fila == magico && columna == magico && diagonal1 == magico && diagonal2 == magico);
     }
 }

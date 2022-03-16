@@ -13,10 +13,12 @@ public class EstrategiaBusquedaAnchura implements EstrategiaBusqueda {
 
     private ArrayList<Nodo> hijos(ProblemaBusqueda p, Nodo nodo){
         ArrayList<Nodo> hijos = new ArrayList<>();
+        Nodo nodoAux = new Nodo(nodo.getEstado(),nodo.getPadre(),nodo.getAccion());
 
         Accion[] disponibles = p.acciones(nodo.getEstado());
         for (Accion acc : disponibles){
-            Estado sc = p.result(nodo.getEstado(), acc);
+            Estado sc = p.result(nodoAux.getEstado(), acc);
+            System.out.println(sc);
             hijos.add(new Nodo(sc, nodo, acc));
         }
         return hijos;
@@ -56,6 +58,7 @@ public class EstrategiaBusquedaAnchura implements EstrategiaBusqueda {
             estadoActual = nodoActual.getEstado();
             nodosExplorados.add(nodoActual);
             hijos = hijos(p,nodoActual);
+
             System.out.println((i++) + " - Estado actual cambiado a " + estadoActual);
 
             for (Nodo hijo : hijos){
