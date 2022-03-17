@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class EstrategiaBusquedaAnchura implements EstrategiaBusqueda {
-    public EstrategiaBusquedaAnchura(){
+public class EstrategiaBusquedaProfundidad implements EstrategiaBusqueda {
+    public EstrategiaBusquedaProfundidad(){
     }
 
     private ArrayList<Nodo> hijos(ProblemaBusqueda p, Nodo nodo){
