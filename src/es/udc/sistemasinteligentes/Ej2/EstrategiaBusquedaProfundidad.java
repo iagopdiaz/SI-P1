@@ -2,11 +2,8 @@ package es.udc.sistemasinteligentes.Ej2;
 
 import es.udc.sistemasinteligentes.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class EstrategiaBusquedaProfundidad implements EstrategiaBusqueda {
     public EstrategiaBusquedaProfundidad(){

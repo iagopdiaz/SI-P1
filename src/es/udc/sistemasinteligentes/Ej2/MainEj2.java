@@ -1,9 +1,7 @@
 package es.udc.sistemasinteligentes.Ej2;
 
-import es.udc.sistemasinteligentes.Ej1.Estrategia4;
-import es.udc.sistemasinteligentes.Ej1.EstrategiaBusquedaGrafo;
 import es.udc.sistemasinteligentes.EstrategiaBusqueda;
-import es.udc.sistemasinteligentes.ProblemaBusqueda;
+
 import java.util.Arrays;
 
 public class MainEj2 {
