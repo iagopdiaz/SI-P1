@@ -20,6 +20,8 @@ public class MainEj2 {
 
         System.out.println("Estado Meta: "+ Arrays.toString(buscador.soluciona(cuadrado)));
 
+        System.out.println("\n");
+
         buscador = new EstrategiaBusquedaProfundidad();
 
         System.out.println("Estrategia Profundidad:");

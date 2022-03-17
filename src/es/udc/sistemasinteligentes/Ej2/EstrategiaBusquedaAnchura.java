@@ -71,7 +71,7 @@ public class EstrategiaBusquedaAnchura implements EstrategiaBusqueda {
                         System.out.println((i++) + " - " + hijo.getEstado() + " ya explorado");
                 }else{
                     System.out.println((i) + " - FIN - " + hijo.getEstado());
-                    ArrayList<Nodo> sol = recontruye_solucion(nodoActual);
+                    ArrayList<Nodo> sol = recontruye_solucion(hijo);
                     Collections.reverse(sol);
                     return sol.toArray(new Nodo[0]);
                 }
