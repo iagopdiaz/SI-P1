@@ -1,6 +1,7 @@
 package es.udc.sistemasinteligentes.Ej2;
 
 import es.udc.sistemasinteligentes.Ej1.Estrategia4;
+import es.udc.sistemasinteligentes.Ej1.EstrategiaBusquedaGrafo;
 import es.udc.sistemasinteligentes.EstrategiaBusqueda;
 import es.udc.sistemasinteligentes.ProblemaBusqueda;
 import java.util.Arrays;
@@ -16,6 +17,12 @@ public class MainEj2 {
         EstrategiaBusqueda buscador = new EstrategiaBusquedaAnchura();
 
         System.out.println("Estrategia Anchura:");
+
+        System.out.println("Estado Meta: "+ Arrays.toString(buscador.soluciona(cuadrado)));
+
+        buscador = new EstrategiaBusquedaProfundidad();
+
+        System.out.println("Estrategia Profundidad:");
 
         System.out.println("Estado Meta: "+ Arrays.toString(buscador.soluciona(cuadrado)));
     }

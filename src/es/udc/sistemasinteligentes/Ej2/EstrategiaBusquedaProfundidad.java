@@ -2,6 +2,7 @@ package es.udc.sistemasinteligentes.Ej2;
 
 import es.udc.sistemasinteligentes.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -36,11 +37,7 @@ public class EstrategiaBusquedaProfundidad implements EstrategiaBusqueda {
     @Override
     public Nodo[] soluciona(ProblemaBusqueda p) throws Exception{
 
-        if (p.esMeta(p.getEstadoInicial())){
-            return new Nodo[]{new Nodo(p.getEstadoInicial(),null,null)};
-        }
-
-        Queue<Nodo> frontera = new LinkedList<>();
+        ArrayList<Nodo> frontera = new ArrayList<>();
         Nodo nodoActual = new Nodo(p.getEstadoInicial(), null, null);
         Estado estadoActual = nodoActual.getEstado();
         frontera.add(nodoActual);
@@ -52,33 +49,32 @@ public class EstrategiaBusquedaProfundidad implements EstrategiaBusqueda {
         System.out.println((i++) + " - Empezando búsqueda en " + estadoActual);
 
         while (!frontera.isEmpty()){
-            nodoActual = frontera.remove();
+
+            nodoActual = frontera.get(0);
+            frontera.remove(0);
             estadoActual = nodoActual.getEstado();
-            nodosExplorados.add(nodoActual);
-            hijos = hijos(p,nodoActual);
-
             System.out.println((i++) + " - Estado actual cambiado a " + estadoActual);
-            for (Nodo hijo : hijos){
-                if(!p.esMeta(hijo.getEstado())){
-                    System.out.println((i++) + " - " + estadoActual + " no es meta");
-                    System.out.println(hijo.getEstado().toString());
 
-                    if (frontera.stream().noneMatch(nodo -> nodo.getEstado().toString().equals(hijo.getEstado().toString()))
-                            && nodosExplorados.stream().noneMatch(nodo -> nodo.getEstado().toString().equals(hijo.getEstado().toString())) ) {
-                        System.out.println((i++) + " - " + hijo.getEstado() + " NO explorado");
-                        frontera.add(hijo);
-                    }
-                    else
-                        System.out.println((i++) + " - " + hijo.getEstado() + " ya explorado");
-                }else{
-                    System.out.println((i) + " - FIN - " + hijo.getEstado());
-                    ArrayList<Nodo> sol = recontruye_solucion(nodoActual);
-                    Collections.reverse(sol);
-                    return sol.toArray(new Nodo[0]);
-                }
+            if (p.esMeta(estadoActual)){
+                break;
             }
 
+            nodosExplorados.add(nodoActual);
+            hijos = hijos(p,nodoActual);
+            System.out.println((i++) + " - " + estadoActual + " no es meta");
+
+            for (Nodo hijo : hijos){
+                if (frontera.stream().noneMatch(nodo -> nodo.getEstado().toString().equals(hijo.getEstado().toString()))
+                        && nodosExplorados.stream().noneMatch(nodo -> nodo.getEstado().toString().equals(hijo.getEstado().toString())) ) {
+                    System.out.println((i++) + " - " + hijo.getEstado() + " NO explorado");
+                    frontera.add(0,hijo);
+                }else
+                    System.out.println((i++) + " - " + hijo.getEstado() + " ya explorado");
+                }
         }
-        throw new Exception("No se ha podido encontrar una solución");
+        System.out.println((i) + " - FIN - " + estadoActual);
+        ArrayList<Nodo> sol = recontruye_solucion(nodoActual);
+        Collections.reverse(sol);
+        return sol.toArray(new Nodo[0]);
     }
 }
