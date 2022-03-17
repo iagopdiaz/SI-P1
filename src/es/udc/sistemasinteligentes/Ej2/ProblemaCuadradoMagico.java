@@ -9,24 +9,6 @@ import java.util.ArrayList;
 
 public class ProblemaCuadradoMagico extends ProblemaBusqueda {
 
-    public static class NodoHeuristica extends Heuristica{
-        @Override
-        public float evalua(Estado e){
-            EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)e;
-            int heuristica = 1;
-
-            for (int i = 0; i < esCu.Cuadrado.length; i++){
-                for (int j = 0; j < esCu.Cuadrado[0].length; i++){
-                    if (esCu.Cuadrado[i][j] == 0)
-                        return heuristica;               //La heuristica está definida como el coste de recorrer las posiciones (posicion 0 0 coste 1, pos 0 1 coste 2)
-                    heuristica++;
-                }
-            }
-            return 0;
-        }
-
-    }
-
     public static class EstadoCuadradoMagico extends Estado {
 
         private int[][] Cuadrado;
@@ -38,6 +20,14 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
 
             this.ValorCuadrado = n * (Math.pow(n,2) + 1) / 2;
             this.Cuadrado = cuadrado;
+        }
+
+        public int[][] getCuadrado() {
+            return Cuadrado;
+        }
+
+        public void setCuadrado(int[][] cuadrado) {
+            Cuadrado = cuadrado;
         }
 
         @Override
