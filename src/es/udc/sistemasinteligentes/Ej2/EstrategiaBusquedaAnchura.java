@@ -61,7 +61,6 @@ public class EstrategiaBusquedaAnchura implements EstrategiaBusqueda {
             for (Nodo hijo : hijos){
                 if(!p.esMeta(hijo.getEstado())){
                     System.out.println((i++) + " - " + estadoActual + " no es meta");
-                    System.out.println(hijo.getEstado().toString());
 
                     if (frontera.stream().noneMatch(nodo -> nodo.getEstado().toString().equals(hijo.getEstado().toString()))
                             && nodosExplorados.stream().noneMatch(nodo -> nodo.getEstado().toString().equals(hijo.getEstado().toString())) ) {
