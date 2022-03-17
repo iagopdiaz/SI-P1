@@ -1,14 +1,23 @@
 package es.udc.sistemasinteligentes;
+import java.lang.Comparable;
 
-public class Nodo {
+public class Nodo implements Comparable {
     private Estado estado;
     private Nodo padre;
     private Accion accion;
+    private float coste;
 
     public Nodo(Estado estado, Nodo padre, Accion accion) {
         this.estado = estado;
         this.padre = padre;
         this.accion = accion;
+    }
+
+    public Nodo(Estado estado, Nodo padre, Accion accion,float coste) {
+        this.estado = estado;
+        this.padre = padre;
+        this.accion = accion;
+        this.coste = coste;
     }
 
     public Estado getEstado() {
@@ -42,5 +51,10 @@ public class Nodo {
                 ", padre=" + getPadre() +
                 ", accion=" + getAccion() +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

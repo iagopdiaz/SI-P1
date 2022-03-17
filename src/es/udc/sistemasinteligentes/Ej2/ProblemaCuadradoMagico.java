@@ -2,13 +2,30 @@ package es.udc.sistemasinteligentes.Ej2;
 
 import es.udc.sistemasinteligentes.Accion;
 import es.udc.sistemasinteligentes.Estado;
-import es.udc.sistemasinteligentes.Nodo;
+import es.udc.sistemasinteligentes.Heuristica;
 import es.udc.sistemasinteligentes.ProblemaBusqueda;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ProblemaCuadradoMagico extends ProblemaBusqueda {
+
+    public static class NodoHeuristica extends Heuristica{
+        @Override
+        public float evalua(Estado e){
+            EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)e;
+            int heuristica = 1;
+
+            for (int i = 0; i < esCu.Cuadrado.length; i++){
+                for (int j = 0; j < esCu.Cuadrado[0].length; i++){
+                    if (esCu.Cuadrado[i][j] == 0)
+                        return heuristica;               //La heuristica está definida como el coste de recorrer las posiciones (posicion 0 0 coste 1, pos 0 1 coste 2)
+                    heuristica++;
+                }
+            }
+            return 0;
+        }
+
+    }
 
     public static class EstadoCuadradoMagico extends Estado {
 
