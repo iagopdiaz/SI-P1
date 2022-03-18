@@ -3,9 +3,9 @@ import es.udc.sistemasinteligentes.Ej2.ProblemaCuadradoMagico;
 
 import java.lang.Comparable;
 
-public class Nodo implements Comparable {
-    private Estado estado;
-    private Nodo padre;
+public class Nodo implements Comparable {           //Nodo en el que se guardan los valores del estado, padre y acción.
+    private Estado estado;                          //A mayores para el ej2B para calcular la heurística guarda tambien el coste
+    private Nodo padre;                             //por eso hay dos constructores Nodo definidos
     private Accion accion;
     private float coste;
 
@@ -56,12 +56,14 @@ public class Nodo implements Comparable {
 
     @Override
     public String toString() {
-        return "Nodo{" +
-                "estado=" + getEstado() +
-                ", padre=" + getPadre() +
-                ", accion=" + getAccion() +
-                ", coste=" + getCoste() +
-                '}';
+        String aux = "Nodo{" + "estado=" + getEstado() + ", accion=" + getAccion();
+
+        if (getCoste() != 0)
+            aux = aux + ", coste=" + getCoste();
+
+        aux = aux + '}';
+
+        return aux;
     }
 
     @Override
