@@ -59,8 +59,8 @@ public class Nodo implements Comparable {           //Nodo en el que se guardan 
         String aux = "Nodo{" + "estado=" + getEstado() + ", accion=" + getAccion();
 
         if (getCoste() != 0)
-            aux = aux + ", coste=" + getCoste();
-
+            aux = aux + ", coste=" + getCoste();             //Como se reutiliza la clase Nodo para varios ejercicios solo devuelve el coste si no es 0
+                                                             //No mostramos por pantalla el padre para mayor claridad a la hora de ver el estado meta
         aux = aux + '}';
 
         return aux;
@@ -72,7 +72,7 @@ public class Nodo implements Comparable {           //Nodo en el que se guardan 
     }
 
     public static class Heuristica extends es.udc.sistemasinteligentes.Heuristica {
-        public Heuristica() {
+        public Heuristica() {                       //Clase del Ej2B para poder calcular la heurística de un estado dado
         }
 
         @Override
@@ -85,8 +85,8 @@ public class Nodo implements Comparable {           //Nodo en el que se guardan 
                 for (int j = 0; j < cuadrado.length; j++){
                     heuristica++;
                     if (cuadrado[i][j] == 0)
-                        return heuristica;             //La heuristica está definida como el coste de recorrer las posiciones (posicion 0 0 coste 1, pos 0 1 coste 2)
-                }
+                        return heuristica;             //La heuristica está definida siendo la posición del numero su coste
+                }                                      // (posicion 0 0 coste 1, pos 0 1 coste 2)
             }
             return 0;
         }
