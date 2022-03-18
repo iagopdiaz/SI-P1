@@ -77,10 +77,9 @@ public class EstrategiaBusquedaInformada implements es.udc.sistemasinteligentes.
                 }else
                     System.out.println((i++) + " - " + hijo.getEstado() + " ya explorado");
             }
-            System.out.println(nodoActual.getCoste());
         }
         System.out.println((i) + " - FIN - " + estadoActual);
-        System.out.println(nodoActual.getCoste());
+        System.out.println((i++) + " - Heuristica - " + nodoActual.getCoste());
         ArrayList<Nodo> sol = recontruye_solucion(nodoActual);
         Collections.reverse(sol);
         return sol.toArray(new Nodo[0]);
