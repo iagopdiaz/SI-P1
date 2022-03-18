@@ -1,7 +1,8 @@
-package es.udc.sistemasinteligentes.Ej1;
+package es.udc.sistemasinteligentes.g10_43.Ej1;
 
-import es.udc.sistemasinteligentes.EstrategiaBusqueda;
-import es.udc.sistemasinteligentes.ProblemaBusqueda;
+import es.udc.sistemasinteligentes.g10_43.EstrategiaBusqueda;
+import es.udc.sistemasinteligentes.g10_43.ProblemaBusqueda;
+
 import java.util.Arrays;
 
 public class MainEj1 {

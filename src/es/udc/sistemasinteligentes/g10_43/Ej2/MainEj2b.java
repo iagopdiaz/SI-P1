@@ -1,7 +1,6 @@
-package es.udc.sistemasinteligentes.Ej2;
+package es.udc.sistemasinteligentes.g10_43.Ej2;
 
-import es.udc.sistemasinteligentes.EstrategiaBusqueda;
-import es.udc.sistemasinteligentes.Nodo;
+import es.udc.sistemasinteligentes.g10_43.Nodo;
 
 import java.util.Arrays;
 
@@ -13,7 +12,7 @@ public class MainEj2b {
 
         ProblemaCuadradoMagico cuadrado = new ProblemaCuadradoMagico(estadoInicial);
 
-        es.udc.sistemasinteligentes.EstrategiaBusquedaInformada buscador = new EstrategiaBusquedaInformada();
+        es.udc.sistemasinteligentes.g10_43.EstrategiaBusquedaInformada buscador = new EstrategiaBusquedaInformada();
 
         Nodo.Heuristica heuristica = new  Nodo.Heuristica();
 

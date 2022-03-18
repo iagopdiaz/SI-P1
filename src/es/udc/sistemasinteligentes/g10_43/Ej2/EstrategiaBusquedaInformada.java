@@ -1,13 +1,11 @@
-package es.udc.sistemasinteligentes.Ej2;
+package es.udc.sistemasinteligentes.g10_43.Ej2;
 
-import es.udc.sistemasinteligentes.*;
+import es.udc.sistemasinteligentes.g10_43.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
 
-public class EstrategiaBusquedaInformada implements es.udc.sistemasinteligentes.EstrategiaBusquedaInformada {
+public class EstrategiaBusquedaInformada implements es.udc.sistemasinteligentes.g10_43.EstrategiaBusquedaInformada {
     public EstrategiaBusquedaInformada(){
     }
 

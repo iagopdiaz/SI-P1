@@ -1,7 +1,6 @@
-package es.udc.sistemasinteligentes.Ej2;
+package es.udc.sistemasinteligentes.g10_43.Ej2;
 
-import es.udc.sistemasinteligentes.EstrategiaBusqueda;
-import es.udc.sistemasinteligentes.Heuristica;
+import es.udc.sistemasinteligentes.g10_43.EstrategiaBusqueda;
 
 import java.util.Arrays;
 

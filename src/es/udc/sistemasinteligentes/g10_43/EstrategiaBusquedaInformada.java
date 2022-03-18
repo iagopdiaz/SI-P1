@@ -1,4 +1,4 @@
-package es.udc.sistemasinteligentes;
+package es.udc.sistemasinteligentes.g10_43;
 
 public interface EstrategiaBusquedaInformada {
     /**

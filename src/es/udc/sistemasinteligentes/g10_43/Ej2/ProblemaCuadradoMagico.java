@@ -1,9 +1,8 @@
-package es.udc.sistemasinteligentes.Ej2;
+package es.udc.sistemasinteligentes.g10_43.Ej2;
 
-import es.udc.sistemasinteligentes.Accion;
-import es.udc.sistemasinteligentes.Estado;
-import es.udc.sistemasinteligentes.Heuristica;
-import es.udc.sistemasinteligentes.ProblemaBusqueda;
+import es.udc.sistemasinteligentes.g10_43.Accion;
+import es.udc.sistemasinteligentes.g10_43.Estado;
+import es.udc.sistemasinteligentes.g10_43.ProblemaBusqueda;
 
 import java.util.ArrayList;
 

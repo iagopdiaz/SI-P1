@@ -1,8 +1,8 @@
-package es.udc.sistemasinteligentes.Ej1;
+package es.udc.sistemasinteligentes.g10_43.Ej1;
 
-import es.udc.sistemasinteligentes.Accion;
-import es.udc.sistemasinteligentes.Estado;
-import es.udc.sistemasinteligentes.ProblemaBusqueda;
+import es.udc.sistemasinteligentes.g10_43.Accion;
+import es.udc.sistemasinteligentes.g10_43.Estado;
+import es.udc.sistemasinteligentes.g10_43.ProblemaBusqueda;
 
 public class ProblemaAspiradora extends ProblemaBusqueda {
     public static class EstadoAspiradora extends Estado {
@@ -41,7 +41,7 @@ public class ProblemaAspiradora extends ProblemaBusqueda {
         }
     }
 
-    public static class AccionAspiradora extends Accion{
+    public static class AccionAspiradora extends Accion {
         public enum Tipo {IZQ, DER, ASP};
 
         private Tipo tipo;

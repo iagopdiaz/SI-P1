@@ -1,5 +1,5 @@
-package es.udc.sistemasinteligentes;
-import es.udc.sistemasinteligentes.Ej2.ProblemaCuadradoMagico;
+package es.udc.sistemasinteligentes.g10_43;
+import es.udc.sistemasinteligentes.g10_43.Ej2.ProblemaCuadradoMagico;
 
 import java.lang.Comparable;
 
@@ -71,7 +71,7 @@ public class Nodo implements Comparable {           //Nodo en el que se guardan 
         return 0;
     }
 
-    public static class Heuristica extends es.udc.sistemasinteligentes.Heuristica {
+    public static class Heuristica extends es.udc.sistemasinteligentes.g10_43.Heuristica {
         public Heuristica() {                       //Clase del Ej2B para poder calcular la heurística de un estado dado
         }
 
