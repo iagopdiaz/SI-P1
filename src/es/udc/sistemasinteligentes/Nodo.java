@@ -81,7 +81,7 @@ public class Nodo implements Comparable {           //Nodo en el que se guardan 
             int[][] cuadrado = esCu.getCuadrado();
             float heuristica = 0;
 
-            for (int i = 0; i < cuadrado.length; i++){
+            for (int i = 0; i < cuadrado.length; i++){     //Recorremos la matriz hasta encontrar un 0 donde devolveremos el valor de la Heuristica como está definida.
                 for (int j = 0; j < cuadrado.length; j++){
                     heuristica++;
                     if (cuadrado[i][j] == 0)

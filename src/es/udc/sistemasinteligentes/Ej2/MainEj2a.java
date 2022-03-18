@@ -5,7 +5,7 @@ import es.udc.sistemasinteligentes.Heuristica;
 
 import java.util.Arrays;
 
-public class MainEj2A {
+public class MainEj2a {
     public static void main(String[] args) throws Exception {
         int[][] cuadradoPrueba = { {4,9,2},{3,5,0},{0,1,0} };
 

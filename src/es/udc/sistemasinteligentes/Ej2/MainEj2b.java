@@ -5,7 +5,7 @@ import es.udc.sistemasinteligentes.Nodo;
 
 import java.util.Arrays;
 
-public class MainEj2B {
+public class MainEj2b {
     public static void main(String[] args) throws Exception {
         int[][] cuadradoPrueba = { {4,9,2},{3,5,0},{0,1,0} };
 

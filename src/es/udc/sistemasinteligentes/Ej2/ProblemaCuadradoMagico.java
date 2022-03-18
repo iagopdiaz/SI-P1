@@ -11,14 +11,14 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
 
     public static class EstadoCuadradoMagico extends Estado {
 
-        private int[][] Cuadrado;
+        private int[][] Cuadrado;               //Guardamos en el estado del problema la matriz del Cuadrado y el valor que tienen que sumar filas,columnas y diagonales.
         private double ValorCuadrado;
 
 
         public EstadoCuadradoMagico(int [][] cuadrado) {
             int n = cuadrado.length;
 
-            this.ValorCuadrado = n * (Math.pow(n,2) + 1) / 2;
+            this.ValorCuadrado = n * (Math.pow(n,2) + 1) / 2;  //Formula para calcular el valor de la suma de filas, columnas y diagonales
             this.Cuadrado = cuadrado;
         }
 
@@ -61,7 +61,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     }
 
     public static class AccionCuadradoMagico extends Accion {
-        private int PonerNumero;
+        private int PonerNumero;                    //Guardamos la acción, en este caso poner un número, que se quiere aplicar al problema
 
         public AccionCuadradoMagico(int numerosDisponibles) {
             this.PonerNumero = numerosDisponibles;
@@ -78,14 +78,14 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         }
 
         @Override
-        public Estado aplicaA(Estado es) {
-            EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
+        public Estado aplicaA(Estado es) {                          //Recorremos la matriz del estado dado para insertar la acción dada
+            EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;   //en la primera posición vacía.
             int[][] nuevoCuadrado = new int[esCu.Cuadrado.length][esCu.Cuadrado.length];
             int i,j;
 
             for (i = 0; i < nuevoCuadrado.length; i++) {
-                for (j = 0; j < nuevoCuadrado.length; j++) {
-                    nuevoCuadrado[i][j] = esCu.Cuadrado[i][j];
+                for (j = 0; j < nuevoCuadrado.length; j++) {            //Creamos una copia del cuadrado del estado dado para no pasar el valor
+                    nuevoCuadrado[i][j] = esCu.Cuadrado[i][j];          //por referencia.
                 }
             }
 
@@ -106,10 +106,10 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
     public ArrayList<Integer> CalcularNumerosDisponibles(EstadoCuadradoMagico estado){
         ArrayList<Integer> numerosDisponibles = new ArrayList<>();
         ArrayList<Integer> numerosUsados = new ArrayList<>();
-        int x,i,j;
+        int i,j;
         int total = (int) Math.pow(estado.Cuadrado.length,2);
 
-        for (i = 0; i < estado.Cuadrado.length; i++) {            //Guardamos los numeros ya usados en el estado dado.
+        for (i = 0; i < estado.Cuadrado.length; i++) {            //Guardamos los numeros ya usados del estado dado.
             for (j = 0; j < estado.Cuadrado.length; j++) {
                 if (estado.Cuadrado[i][j] != 0){
                     numerosUsados.add(estado.Cuadrado[i][j]);
@@ -117,8 +117,8 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
             }
         }
 
-        for (i = 0; i < total; i++) {                      //Llenamos el array con todos los números posibles en el cuadrado.
-            if (!numerosUsados.contains(i+1))
+        for (i = 0; i < total; i++) {                      //Recorremos el array hasta el total de posiciones
+            if (!numerosUsados.contains(i+1))              //Si encontramos que el número no está usado en el estado dado añade el numero a la lista de acciones posibles.
                 numerosDisponibles.add(i+1);
         }
 
@@ -129,9 +129,8 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         super(estadoInicial);
         ArrayList<Integer> numerosDisponibles;
         ArrayList<AccionCuadradoMagico> acciones = new ArrayList<>();
-        int x = 6;
 
-        numerosDisponibles = CalcularNumerosDisponibles(estadoInicial);
+        numerosDisponibles = CalcularNumerosDisponibles(estadoInicial);     //Creamos el problema con el estado dado y generamos las acciones disponibles para el.
 
         for (Integer numerosDisponible : numerosDisponibles) {
             acciones.add(new AccionCuadradoMagico(numerosDisponible));
@@ -139,7 +138,7 @@ public class ProblemaCuadradoMagico extends ProblemaBusqueda {
         listaAcciones = acciones.toArray(new Accion[0]);
     }
 
-    public Accion[] acciones(Estado es){
+    public Accion[] acciones(Estado es){                        //Calcula la lista de aciones posibles de un estado dado.
         EstadoCuadradoMagico esCu = (EstadoCuadradoMagico)es;
         ArrayList<Integer> numerosDisponibles;
         ArrayList<AccionCuadradoMagico> acciones = new ArrayList<>();
